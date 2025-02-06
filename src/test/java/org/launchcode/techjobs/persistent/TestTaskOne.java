@@ -20,7 +20,7 @@ public class TestTaskOne extends AbstractTest{
     public void testDbConnectionProperties () throws IOException {
         String propsFileContents = getFileContents("src/main/resources/application.properties");
 
-        Pattern urlPattern = Pattern.compile("spring.datasource.url=jdbc:mysql://localhost:3306/techjobs");
+        Pattern urlPattern = Pattern.compile("spring.datasource.url=jdbc:mysql://localhost:3307/techjobs");
         Matcher urlMatcher = urlPattern.matcher(propsFileContents);
         boolean urlFound = urlMatcher.find();
         assertTrue(urlFound, "Database connection URL not found or is incorrect");
