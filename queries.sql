@@ -11,5 +11,6 @@ from employer
 where location = "St. Louis, MO.";
 
 --Part 3
+Drop Table job;
 
 --Part 4
