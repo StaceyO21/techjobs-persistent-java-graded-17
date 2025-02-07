@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("skills")
-public class SkillController extends AbstractEntity {
+public class SkillController {
 
     @Autowired
     private SkillRepository skillRepository;
@@ -29,6 +29,7 @@ public class SkillController extends AbstractEntity {
 
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
+        model.addAttribute("title", "Create Skill");
         model.addAttribute(new Skill());
         return "skills/add";
     }
@@ -47,13 +48,12 @@ public class SkillController extends AbstractEntity {
 
     @GetMapping("view/{skillId}")
     public String displayViewSkill(Model model, @PathVariable int skillId){
-        Optional optSkill = skillRepository.findById(skillId);
+        Optional <Skill> optSkill = skillRepository.findById(skillId);
         if (optSkill.isPresent()) {
-            Skill skill = (Skill) optSkill.get();
-            model.addAttribute("skill", skill);
+            model.addAttribute("skill", optSkill.get());
             return "skills/view";
         } else {
-            return "redirect:../";
+            return "redirect:/skills";
         }
     }
 }
