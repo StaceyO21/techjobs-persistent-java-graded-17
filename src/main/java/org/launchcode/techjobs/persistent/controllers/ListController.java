@@ -53,18 +53,12 @@ public class ListController {
         if (column.toLowerCase().equals("all")){
             jobs = jobRepository.findAll();
             model.addAttribute("title", "All Jobs");
-        } else if (column.toLowerCase().equals("employer")){
-            jobs = jobRepository.findByEmployer_Name(value);
-            model.addAttribute("title", "Jobs with Employer: " + value);
-        }else if (column.toLowerCase().equals("skill")){
-            jobs = jobRepository.findBySkills_Name(value);
-            model.addAttribute("title", "Jobs with Skills: " + value);
-        }else{
-            jobs = jobRepository.findAll();
-            model.addAttribute("title", "All Jobs");
+        } else {
+            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
+            model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
         model.addAttribute("jobs", jobs);
-
         return "list-jobs";
     }
+
 }
