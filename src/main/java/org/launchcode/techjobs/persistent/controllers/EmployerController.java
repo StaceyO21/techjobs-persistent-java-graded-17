@@ -51,7 +51,7 @@ public class EmployerController {
         if (optEmployer.isPresent()) {
             Employer employer = (Employer)optEmployer.get();
             model.addAttribute("employer", employer);
-            return "index";
+            return "/index";
         } else {
             return "redirect:/employers";
         }
